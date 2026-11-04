@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manish Kashyap — Web Developer & Event Organizer</title>
+<meta name="description" content="Portfolio of Manish Kashyap — web developer and event organizer from Mumbai. BSc Computer Science. Python, JavaScript, PHP, SQL.">
+<!-- favicon + link-preview tags (WhatsApp / LinkedIn) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2323231e'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='28' font-weight='bold' fill='%23d3de4a' text-anchor='middle'%3EMK%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#f4f1e8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Manish Kashyap — Web Developer &amp; Event Organizer">
+<meta property="og:description" content="Mumbai-based web developer and event organizer. BSc Computer Science (8.56/10). Python, JavaScript, PHP, SQL.">
+<meta property="og:image" content="images/mk-portrait.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Manish Kashyap — Web Developer &amp; Event Organizer">
+<meta name="twitter:image" content="images/mk-portrait.jpg">
+<style>
+/* ==============================================================
+   MANISH KASHYAP — PORTFOLIO
+   Editorial style: warm cream paper, big serif statements,
+   numbered sections, 3D artwork, quiet details.
+   Single file + /images folder. No external dependencies.
+   ============================================================== */
+:root{
+  --paper:   #f4f1e8;   /* warm cream page            */
+  --panel:   #ece8da;   /* slightly deeper cream      */
+  --ink:     #23231e;   /* near-black warm ink        */
+  --olive:   #57574a;   /* olive for secondary text   */
+  --muted:   #8a8d99;   /* quiet grey                 */
+  --lime:    #d3de4a;   /* chartreuse accent          */
+  --lime-dk: #a8b32e;   /* darker lime for text       */
+  --line:    #ddd7c6;   /* hairlines                  */
+  --card:    #efeadd;   /* work-card body             */
+  --serif: 'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+  --sans:  -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16.5px; line-height:1.7; }
+::selection{ background:var(--lime); color:var(--ink); }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+h1,h2,h3,h4{ font-family:var(--serif); font-weight:600; line-height:1.12; letter-spacing:-.01em; }
+.wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
+section{ padding:110px 0 90px; border-top:1px solid var(--line); }
+
+/* ---------- reveal on scroll ---------- */
+.reveal{ opacity:0; transform:translateY(26px); transition:opacity .8s ease, transform .8s ease; }
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){ *{ animation:none!important; transition:none!important; } .reveal{ opacity:1; transform:none; } }
+
+/* ---------- top strip ---------- */
+.topbar{ border-bottom:1px solid var(--line); background:var(--paper); position:sticky; top:0; z-index:50; }
+.topbar .wrap{ display:flex; justify-content:space-between; align-items:center; padding-top:14px; padding-bottom:14px; }
+.brand{ font-family:var(--serif); font-weight:700; font-size:17px; }
+.brand span{ color:var(--lime-dk); }
+.topbar nav{ display:flex; gap:22px; }
+.topbar nav a{ font-size:13.5px; color:var(--olive); text-decoration:none; }
+.topbar nav a:hover{ color:var(--ink); }
+.pill{
+  display:inline-flex; align-items:center; gap:8px; font-size:12.5px; font-weight:600;
+  border:1px solid var(--line); border-radius:999px; padding:7px 14px; background:#fff8;
+}
+.pill i{ width:8px; height:8px; border-radius:50%; background:#69a83c; display:inline-block; }
+
+/* ================= 3D DESK SCULPTURE (hero, right side) ================= */
+.model3d{ position:absolute; right:0; top:104px; width:min(440px,40vw); aspect-ratio:1/1.02; z-index:0; pointer-events:none; }
+.m3-scene{ position:absolute; inset:0; perspective:900px; transform-style:preserve-3d; }
+/* soft floor shadow */
+.m3-shadow{ position:absolute; bottom:4%; left:14%; width:72%; height:44px;
+  background:radial-gradient(closest-side, rgba(35,35,30,.30), transparent 72%); filter:blur(7px); }
+/* --- chartreuse planet + cream orbit ring --- */
+.m3-orbit{ position:absolute; left:50%; top:40%; width:0; height:0; transform-style:preserve-3d;
+  animation:m3float 6.5s ease-in-out infinite; }
+.m3-ringwrap{ position:absolute; left:-115px; top:-115px; width:230px; height:230px;
+  transform-style:preserve-3d; animation:m3precess 22s linear infinite; }
+.m3-ring{ position:absolute; inset:0; border-radius:50%;
+  border:24px solid #e9e1cd; transform:rotateX(74deg);
+  box-shadow:inset 0 0 0 2px #d9d0b8, 0 0 24px rgba(35,35,30,.08); }
+.m3-ball{ position:absolute; left:-48px; top:-48px; width:96px; height:96px; border-radius:50%;
+  background:radial-gradient(circle at 32% 28%, #f0f49b 0%, #dde659 38%, #d3de4a 58%, #97a12c 88%);
+  box-shadow:inset -10px -14px 24px rgba(90,100,20,.45), 0 16px 30px rgba(35,35,30,.18); }
+/* --- matte olive cube --- */
+.m3-cubefloat{ position:absolute; left:8%; top:56%; width:118px; height:118px;
+  transform-style:preserve-3d; animation:m3float 7.5s ease-in-out infinite reverse; }
+.m3-cube{ position:relative; width:118px; height:118px; transform-style:preserve-3d;
+  animation:m3spin 16s linear infinite; }
+.m3-cube i{ position:absolute; inset:0; }
+.m3-cube i:nth-child(1){ background:#efe8d6; transform:translateZ(59px); }
+.m3-cube i:nth-child(2){ background:#ddd4bc; transform:rotateY(180deg) translateZ(59px); }
+.m3-cube i:nth-child(3){ background:#57574a; transform:rotateY(90deg) translateZ(59px); }
+.m3-cube i:nth-child(4){ background:#6c6c5c; transform:rotateY(-90deg) translateZ(59px); }
+.m3-cube i:nth-child(5){ background:#f4eedd; transform:rotateX(90deg) translateZ(59px); }
+.m3-cube i:nth-child(6){ background:#c9c0a6; transform:rotateX(-90deg) translateZ(59px); }
+/* --- little olive moon --- */
+.m3-minifloat{ position:absolute; right:9%; top:14%; animation:m3float 5.4s ease-in-out infinite; }
+.m3-mini{ width:36px; height:36px; border-radius:50%;
+  background:radial-gradient(circle at 34% 30%, #83836f, #57574a 65%, #3c3c33);
+  box-shadow:0 10px 18px rgba(35,35,30,.22); }
+@keyframes m3spin{ from{ transform:rotateX(-16deg) rotateY(0deg);} to{ transform:rotateX(-16deg) rotateY(360deg);} }
+@keyframes m3precess{ from{ transform:rotateY(0deg);} to{ transform:rotateY(360deg);} }
+@keyframes m3float{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-16px);} }
+@media (max-width:1180px){ .model3d{ width:360px; top:130px; } }
+@media (max-width:960px){
+  .model3d{ position:static; width:270px; margin:30px auto 0; pointer-events:auto; }
+}
+
+/* ================= HERO ================= */
+.hero{ padding:96px 0 70px; position:relative; }
+.hero .wrap{ position:relative; z-index:1; }
+.hero h1{ font-size:clamp(44px, 6.6vw, 84px); max-width:16ch; }
+.hero h1 em{ font-style:italic; color:var(--lime-dk); }
+.hero .sub{ max-width:56ch; color:var(--olive); font-size:17.5px; margin:26px 0 30px; }
+.cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+.btn{
+  display:inline-flex; align-items:center; gap:10px; text-decoration:none;
+  padding:14px 24px; border-radius:999px; font-weight:600; font-size:15px; transition:transform .2s, box-shadow .2s;
+}
+.btn:hover{ transform:translateY(-2px); }
+.btn.dark{ background:var(--ink); color:#f4f1e8; }
+.btn.dark:hover{ box-shadow:0 12px 30px rgba(35,35,30,.25); }
+.btn.line{ border:1.5px solid var(--ink); }
+.btn.line:hover{ background:var(--lime); border-color:var(--lime-dk); }
+
+/* hero lower: info panel + portrait */
+.hero-low{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; margin-top:70px; }
+.now-card{ border:1px solid var(--line); background:#fbf9f2; border-radius:18px; overflow:hidden; position:relative; }
+.now-card::after{ content:""; position:absolute; top:16px; right:18px; width:13px; height:13px; border-radius:50%; background:var(--lime); box-shadow:0 4px 12px rgba(168,179,46,.45); }
+.now-title{ padding:18px 22px 14px; font-size:11.5px; letter-spacing:2.5px; text-transform:uppercase; color:var(--olive); }
+.now-row{ display:flex; justify-content:space-between; gap:16px; padding:14px 22px; border-top:1px solid var(--line); }
+.now-row span{ font-size:11.5px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); padding-top:3px; white-space:nowrap; }
+.now-row b{ font-size:14.5px; text-align:right; font-weight:600; }
+.stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:30px; }
+.stat{ border-top:2px solid var(--ink); padding-top:14px; }
+.stat b{ font-family:var(--serif); font-size:clamp(36px,4vw,50px); font-weight:600; line-height:1; display:block; white-space:nowrap; }
+.stat b sup{ font-size:20px; color:var(--lime-dk); }
+.stat > span{ color:var(--muted); font-size:12.5px; line-height:1.45; display:block; margin-top:7px; }
+
+/* extra hero-left content: chips + pull-quote (fills the column under the stats) */
+.mini-facts{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:28px; }
+.mini{ border:1px solid var(--line); background:#fbf9f2; border-radius:14px; padding:15px 18px; transition:transform .2s, box-shadow .2s; }
+.mini:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(35,35,30,.10); }
+.mini b{ display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.mini span{ font-size:14px; font-weight:600; }
+.pull{ margin-top:26px; padding:6px 0 6px 20px; border-left:3px solid var(--lime);
+  font-family:var(--serif); font-style:italic; font-size:17.5px; line-height:1.55; color:var(--olive); max-width:46ch; }
+
+/* page scroll progress bar */
+#progress{ position:fixed; top:0; left:0; height:3px; width:0; background:var(--lime-dk); z-index:90; }
+
+/* nav polish: underline grow + numbered links */
+.topbar nav a{ position:relative; padding-bottom:3px; }
+.topbar nav a::after{ content:""; position:absolute; left:0; bottom:0; height:1.5px; width:0; background:var(--lime-dk); transition:width .25s ease; }
+.topbar nav a:hover::after{ width:100%; }
+.topbar nav a b{ color:var(--lime-dk); font-weight:600; margin-right:5px; font-size:11px; }
+h1,h2{ text-wrap:balance; }
+
+/* editorial ticker */
+.ticker{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:#f8f5ec; overflow:hidden; padding:13px 0; }
+.ticker-row{ display:flex; width:max-content; animation:tick 32s linear infinite; }
+.ticker-row span{ font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--olive); padding:0 26px; white-space:nowrap; }
+.ticker-row span i{ color:var(--lime-dk); font-style:normal; padding-right:26px; }
+@keyframes tick{ to{ transform:translateX(-50%);} }
+
+/* ghost index numbers on work art */
+.work .art{ position:relative; }
+.work .art::after{
+  content:attr(data-idx); position:absolute; top:12px; right:18px;
+  font-family:var(--serif); font-size:44px; color:#f4f1e8; opacity:.9;
+  text-shadow:0 2px 16px rgba(35,35,30,.3); pointer-events:none;
+}
+
+/* ================= FRIENDLY ROBOT (contact section) ================= */
+.contact{ position:relative; }
+.rwrap{ position:absolute; top:96px; right:5%; width:190px; z-index:0; pointer-events:none;
+  animation:rFloat 5.5s ease-in-out infinite; }
+.robot{ position:relative; width:170px; margin:0 auto; }
+.r-shadow{ width:120px; height:20px; margin:16px auto 0;
+  background:radial-gradient(closest-side, rgba(35,35,30,.25), transparent 70%); filter:blur(5px); }
+/* head */
+.r-head{ width:128px; height:98px; margin:0 auto; position:relative; z-index:2;
+  background:linear-gradient(160deg,#f2ecdb,#e7dfc8); border:2px solid #d9d0b8; border-radius:26px;
+  box-shadow:0 14px 30px rgba(35,35,30,.15); }
+.r-antenna{ position:absolute; top:-24px; left:50%; transform:translateX(-50%); }
+.r-stem{ display:block; width:4px; height:18px; background:#8a8a76; border-radius:2px; margin:0 auto; }
+.r-bulb{ display:block; width:14px; height:14px; border-radius:50%; margin-top:2px;
+  background:radial-gradient(circle at 35% 35%, #f0f49b, #d3de4a 55%, #97a12c);
+  animation:rPulse 2.4s ease-in-out infinite; }
+.r-ear{ position:absolute; top:32px; width:12px; height:36px; background:#8a8a76; border-radius:6px; }
+.r-ear.l{ left:-15px; } .r-ear.r{ right:-15px; }
+.r-face{ position:absolute; inset:13px 16px; background:#57574a; border-radius:16px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
+.r-eyes{ display:flex; gap:15px; }
+.r-eye{ width:15px; height:15px; border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, #f0f49b, #d3de4a 60%, #97a12c);
+  box-shadow:0 0 10px rgba(211,222,74,.85);
+  animation:rBlink 4.6s infinite; transition:transform .08s linear; }
+.r-eye:nth-child(2){ animation-delay:.06s; }
+.r-mouth{ width:32px; height:9px; border:2.5px solid #d3de4a; border-top:0;
+  border-left-color:transparent; border-right-color:transparent; border-radius:0 0 18px 18px; opacity:.95; }
+/* neck + torso */
+.r-neck{ width:34px; height:11px; background:#c9c0a6; margin:0 auto; border-radius:0 0 6px 6px; }
+.r-torso{ width:148px; height:106px; margin:0 auto; position:relative;
+  background:linear-gradient(160deg,#f2ecdb,#e3dbc2); border:2px solid #d9d0b8; border-radius:22px;
+  box-shadow:0 18px 36px rgba(35,35,30,.14); }
+.r-chest{ position:absolute; left:50%; top:30px; transform:translateX(-50%); width:26px; height:26px;
+  border-radius:50%; background:radial-gradient(circle at 35% 35%, #f0f49b, #d3de4a 55%, #97a12c);
+  box-shadow:0 0 0 5px rgba(211,222,74,.16); animation:rPulse 3s ease-in-out infinite; }
+.r-vent{ position:absolute; bottom:16px; left:50%; transform:translateX(-50%); width:58px; height:14px;
+  background:repeating-linear-gradient(#c9c0a6 0 3px, transparent 3px 8px); border-radius:3px; opacity:.7; }
+/* arms - the right one waves at visitors */
+.r-arm{ position:absolute; top:20px; width:15px; height:62px; background:#8a8a76; border-radius:9px; }
+.r-arm.l{ left:-21px; transform:rotate(9deg); }
+.r-arm.r{ right:-21px; transform-origin:top center; animation:rWave 1.9s ease-in-out infinite; }
+@keyframes rFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-14px);} }
+@keyframes rWave{ 0%,100%{ transform:rotate(16deg);} 50%{ transform:rotate(-32deg);} }
+@keyframes rBlink{ 0%,91%,100%{ transform:scaleY(1);} 94%{ transform:scaleY(.08);} }
+@keyframes rPulse{ 0%,100%{ box-shadow:0 0 9px rgba(211,222,74,.7);} 50%{ box-shadow:0 0 22px rgba(211,222,74,1);} }
+@media (max-width:1100px){ .rwrap{ right:2%; width:160px; } .robot{ width:150px; } }
+@media (max-width:900px){
+  .rwrap{ position:static; width:170px; margin:30px auto 0; }
+}
+
+/* footer wordmark */
+.foot-mark{ font-family:var(--serif); font-size:clamp(42px,7vw,88px); line-height:1; letter-spacing:-.02em; padding:64px 0 26px; }
+.foot-mark i{ font-style:italic; color:var(--lime-dk); }
+.foot-row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:var(--muted); font-size:13.5px; border-top:1px solid var(--line); padding:22px 0 36px; }
+.fig{ position:relative; }
+.fig img{ border-radius:18px; box-shadow:0 30px 70px rgba(35,35,30,.18); transition:transform .15s ease-out; will-change:transform; }
+.fig figcaption{
+  display:flex; justify-content:space-between; gap:10px; color:var(--muted);
+  font-size:12.5px; margin-top:12px; font-style:italic;
+}
+.clients{ margin-top:56px; }
+.clients p{ font-size:12px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.clients ul{ display:flex; flex-wrap:wrap; gap:12px 34px; list-style:none; }
+.clients li{ font-family:var(--serif); font-size:19px; color:var(--olive); }
+
+/* ================= SECTION HEADS ================= */
+.snum{ font-size:13px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:14px; }
+.snum b{ color:var(--lime-dk); }
+.shead h2{ font-size:clamp(34px, 4.6vw, 56px); max-width:18ch; }
+.shead .lede{ color:var(--olive); max-width:58ch; margin-top:18px; font-size:17px; }
+
+/* ================= 01 WORK ================= */
+.work-grid{ display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:56px; }
+.work{
+  background:var(--card); border:1px solid var(--line); border-radius:20px; overflow:hidden;
+  display:flex; flex-direction:column; transition:transform .25s ease, box-shadow .25s ease;
+}
+.work:hover{ transform:translateY(-6px); box-shadow:0 26px 60px rgba(35,35,30,.16); }
+.work .art{ aspect-ratio:16/9.5; overflow:hidden; }
+.work .art img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.work:hover .art img{ transform:scale(1.045); }
+.work .body{ padding:26px 28px 28px; display:flex; flex-direction:column; gap:12px; flex:1; }
+.work .meta{ display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted); }
+.work .meta b{ color:var(--olive); font-weight:600; }
+.work h3{ font-size:27px; }
+.work .tag{ font-style:italic; font-family:var(--serif); color:var(--olive); font-size:16.5px; }
+.work .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+.work .tags span{ font-size:12px; font-weight:600; color:var(--olive); border:1px solid var(--line); border-radius:999px; padding:4px 11px; background:#fff9; }
+.work .foot{ margin-top:auto; display:flex; justify-content:space-between; align-items:center; padding-top:16px; border-top:1px solid var(--line); }
+.work .foot a{ font-weight:600; font-size:14px; text-decoration:none; }
+.work .foot a:hover{ color:var(--lime-dk); }
+.work .metric{ text-align:right; }
+.work .metric b{ font-family:var(--serif); font-size:21px; display:block; line-height:1.1; }
+.work .metric span{ font-size:12px; color:var(--muted); }
+.drawer{ margin-top:26px; border:1px dashed var(--line); border-radius:16px; padding:22px 26px; background:#faf7ee; }
+.drawer p{ font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+.drawer ul{ list-style:none; display:grid; gap:10px; }
+.drawer li{ display:flex; justify-content:space-between; gap:14px; font-size:14.5px; border-bottom:1px solid var(--line); padding-bottom:10px; }
+.drawer li:last-child{ border-bottom:0; padding-bottom:0; }
+.drawer li a{ text-decoration:none; font-weight:600; }
+.drawer li a:hover{ color:var(--lime-dk); }
+.drawer li em{ color:var(--muted); font-style:normal; font-size:13px; white-space:nowrap; }
+
+/* ================= 02 ABOUT ================= */
+.about-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; margin-top:56px; align-items:start; }
+.about-photo{ position:sticky; top:90px; }
+.about-photo img{ border-radius:18px; box-shadow:0 26px 60px rgba(35,35,30,.16); }
+.about-photo figcaption{ display:flex; justify-content:space-between; color:var(--muted); font-size:12.5px; font-style:italic; margin-top:12px; }
+.kv{ display:grid; grid-template-columns:1fr 1fr; gap:18px; margin:0 0 26px; }
+.kv div{ border:1px solid var(--line); border-radius:14px; padding:14px 18px; background:#faf7ee; }
+.kv b{ display:block; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:3px; }
+.about-text p{ margin-bottom:16px; color:var(--olive); }
+.about-text p b{ color:var(--ink); }
+.rules{ margin-top:34px; }
+.rules h4{ font-size:14px; letter-spacing:2.5px; text-transform:uppercase; font-family:var(--sans); color:var(--muted); margin-bottom:16px; }
+.rule{ display:flex; gap:18px; padding:16px 0; border-top:1px solid var(--line); }
+.rule b{ font-family:var(--serif); font-size:22px; color:var(--lime-dk); }
+.rule div strong{ display:block; font-size:15.5px; margin-bottom:2px; }
+.rule div p{ font-size:14px; color:var(--olive); margin:0; }
+.toolkit{ margin-top:34px; }
+.toolkit h4{ font-size:14px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); margin-bottom:16px; font-family:var(--sans); }
+.chips{ display:flex; flex-wrap:wrap; gap:9px; }
+.chips span{ font-size:13px; font-weight:600; border:1px solid var(--line); background:#fff9; border-radius:999px; padding:7px 15px; }
+.chips span:hover{ background:var(--lime); }
+.resume-link{ margin-top:34px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+
+/* ================= 03 EXPERIENCE ================= */
+.xp-grid{ display:grid; grid-template-columns:1.25fr .75fr; gap:64px; margin-top:56px; align-items:start; }
+.job{ padding:30px 0; border-top:1px solid var(--line); }
+.job:first-child{ border-top:0; padding-top:0; }
+.job .when{ font-size:13px; color:var(--muted); margin-bottom:8px; }
+.job h3{ font-size:25px; }
+.job .org{ color:var(--olive); font-size:14.5px; margin:4px 0 14px; }
+.job ul{ list-style:none; }
+.job li{ position:relative; padding-left:24px; margin-bottom:9px; color:var(--olive); font-size:15px; }
+.job li::before{ content:"—"; position:absolute; left:0; color:var(--lime-dk); }
+.job .tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.job .tags span{ font-size:12px; font-weight:600; color:var(--olive); border:1px solid var(--line); border-radius:999px; padding:4px 11px; }
+.side-block{ margin-bottom:40px; }
+.side-block h4{ font-size:13px; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); font-family:var(--sans); margin-bottom:16px; }
+.edu{ padding:18px 0; border-top:1px solid var(--line); }
+.edu:first-of-type{ border-top:0; padding-top:0; }
+.edu b{ font-size:16px; display:block; }
+.edu .where{ color:var(--olive); font-size:14px; }
+.edu .score{ font-family:var(--serif); color:var(--lime-dk); font-size:19px; font-weight:700; }
+.edu .yr{ color:var(--muted); font-size:12.5px; }
+.award{ display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--line); align-items:baseline; }
+.award:first-of-type{ border-top:0; }
+.award b{ font-size:14.5px; }
+.award span{ display:block; color:var(--muted); font-size:13px; }
+.award i{ font-style:normal; color:var(--lime-dk); font-family:var(--serif); }
+
+/* ================= NEXT UP STRIP ================= */
+.nextup{ background:var(--ink); color:#f4f1e8; padding:64px 0; }
+.nextup .wrap{ display:flex; justify-content:space-between; align-items:center; gap:26px; flex-wrap:wrap; }
+.nextup p{ font-family:var(--serif); font-size:clamp(22px,3vw,32px); font-style:italic; }
+.nextup a{ color:var(--lime); text-decoration:none; font-weight:600; border-bottom:1px solid var(--lime); padding-bottom:2px; }
+.nextup a:hover{ opacity:.8; }
+
+/* ================= 04 BEYOND ================= */
+.beyond-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:52px; }
+.bcard{ border:1px solid var(--line); border-radius:18px; padding:28px; background:#faf7ee; }
+.bcard .em{ font-size:30px; }
+.bcard h4{ font-size:20px; margin:14px 0 8px; }
+.bcard p{ color:var(--olive); font-size:14.5px; }
+
+/* ================= 05 CONTACT ================= */
+.contact .big{
+  font-family:var(--serif); font-size:clamp(34px,5.4vw,64px); max-width:15ch; margin:10px 0 30px;
+}
+.contact .big a{ text-decoration:none; border-bottom:3px solid var(--lime); }
+.contact .big a:hover{ color:var(--lime-dk); }
+.contact-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:50px; }
+.cbox{ border:1px solid var(--line); border-radius:16px; padding:22px; background:#faf7ee; }
+.cbox b{ display:block; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+.cbox a{ text-decoration:none; font-weight:600; }
+.cbox a:hover{ color:var(--lime-dk); }
+.cbox .ist{ font-family:var(--serif); font-size:22px; }
+footer{ border-top:1px solid var(--line); padding:0 0 10px; }
+footer b{ color:var(--ink); }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:920px){
+  .hero-low, .about-grid, .xp-grid{ grid-template-columns:1fr; }
+  .work-grid{ grid-template-columns:1fr; }
+  .beyond-grid{ grid-template-columns:1fr; }
+  .contact-row{ grid-template-columns:1fr; }
+  .about-photo{ position:static; max-width:520px; }
+  .topbar nav{ display:none; }
+  section{ padding:80px 0 64px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- ================= TOP BAR ================= -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">Manish Kashyap<span>.</span></div>
+    <nav>
+      <a href="#work"><b>01</b>Work</a>
+      <a href="#about"><b>02</b>About</a>
+      <a href="#experience"><b>03</b>Experience</a>
+      <a href="#contact"><b>05</b>Contact</a>
+    </nav>
+    <span class="pill"><i></i> Open to opportunities — 2026</span>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="wrap">
+    <h1 class="reveal">I write code for the web — and run <em>the shows</em> people remember.</h1>
+    <p class="sub reveal">Web developer and event organizer from Mumbai. BSc Computer Science (8.56/10) —
+    equally at home in a Python script or running a 2,000-attendee college fest. I work hard,
+    work smart, and grow with every project.</p>
+    <div class="cta-row reveal">
+      <a class="btn dark" href="#work">View selected work ↓</a>
+      <a class="btn line" href="mailto:manishkashyap888th@gmail.com?subject=Hello%20Manish%20—%20let's%20talk">Start a conversation</a>
+    </div>
+
+    <!-- 3D desk sculpture: chartreuse planet + orbit ring, olive cube, little moon.
+         Pure CSS 3D (no libraries) - gently floats, spins, and tilts with the cursor. -->
+    <div class="model3d" aria-hidden="true">
+      <div class="m3-scene" id="m3scene">
+        <div class="m3-shadow"></div>
+        <div class="m3-cubefloat"><div class="m3-cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+        <div class="m3-orbit">
+          <div class="m3-ringwrap"><div class="m3-ring"></div></div>
+          <div class="m3-ball"></div>
+        </div>
+        <div class="m3-minifloat"><div class="m3-mini"></div></div>
+      </div>
+    </div>
+
+    <div class="hero-low">
+      <div class="reveal">
+        <div class="now-card">
+          <div class="now-title">At a glance</div>
+          <div class="now-row"><span>Currently</span><b>Sports Analyst — Hudl</b></div>
+          <div class="now-row"><span>Degree</span><b>BSc Computer Science · 8.56 / 10</b></div>
+          <div class="now-row"><span>Led</span><b>Solasta fest — 2,000+ attendees</b></div>
+          <div class="now-row"><span>Open to</span><b>Web dev roles · freelance</b></div>
+        </div>
+        <div class="stats">
+          <div class="stat"><b><span data-count="8.56" data-dec="2">0</span><sup>/10</sup></b><span>CGPI — BSc Computer Science</span></div>
+          <div class="stat"><b><span data-count="2000" data-plus="1">0</span><sup>+</sup></b><span>attendees at the fest I led</span></div>
+          <div class="stat"><b><span data-count="25" data-plus="1">0</span><sup>+</sup></b><span>team members organized</span></div>
+        </div>
+        <div class="mini-facts">
+          <div class="mini"><b>Languages</b><span>Hindi &middot; English &middot; Marathi</span></div>
+          <div class="mini"><b>Beyond the desk</b><span>Sports &middot; Travel &middot; Events</span></div>
+        </div>
+        <p class="pull">&ldquo;Bring the technical and the organizational together &mdash; learn from the best, and grow with every project.&rdquo;</p>
+      </div>
+      <figure class="fig reveal">
+        <img id="tilt" src="images/mk-portrait.jpg" alt="A sculptural cream and olive bust with a chartreuse sphere on a warm cream set">
+        <figcaption><span>Fig. 01 — Manish, at the desk</span><span>Move cursor · it tilts</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="clients reveal">
+      <p>Worked with &amp; alongside</p>
+      <ul>
+        <li>Hudl</li><li>Solasta Fest</li><li>Thakur Ramnarayan College</li><li>TRCAC Mumbai</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ================= EDITORIAL TICKER ================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-row">
+    <span>Web Development <i>✦</i></span><span>Python <i>✦</i></span><span>JavaScript <i>✦</i></span>
+    <span>SQL · MySQL <i>✦</i></span><span>PHP <i>✦</i></span><span>Data Analysis <i>✦</i></span>
+    <span>Event Management <i>✦</i></span><span>Leadership <i>✦</i></span><span>Mumbai <i>✦</i></span>
+    <span>Web Development <i>✦</i></span><span>Python <i>✦</i></span><span>JavaScript <i>✦</i></span>
+    <span>SQL · MySQL <i>✦</i></span><span>PHP <i>✦</i></span><span>Data Analysis <i>✦</i></span>
+    <span>Event Management <i>✦</i></span><span>Leadership <i>✦</i></span><span>Mumbai <i>✦</i></span>
+  </div>
+</div>
+
+<!-- ================= 01 SELECTED WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="snum reveal"><b>01</b> — Selected work</div>
+    <div class="shead reveal">
+      <h2>A few things I've made.</h2>
+      <p class="lede">Two full builds from my journey so far — one turning market data into forecasts,
+      one automating a rental business end to end.</p>
+    </div>
+
+    <div class="work-grid">
+      <article class="work reveal">
+        <div class="art" data-idx="01"><img src="images/work-market.jpg" alt="Rising dark 3D chart bars with a chartreuse sphere on a cream set"></div>
+        <div class="body">
+          <div class="meta"><b>2025</b><span>Data science · Web</span></div>
+          <h3>Stock Market Prediction System</h3>
+          <p class="tag">Clarity from market chaos.</p>
+          <div class="tags"><span>Python</span><span>Data preparation</span><span>Feature engineering</span><span>Pattern classification</span><span>CSS</span></div>
+          <p style="color:var(--olive); font-size:14.5px;">A predictive web application: Python drives the back-end
+          algorithmic computations and forecasting, wrapped in a responsive interactive UI with custom styling.</p>
+          <div class="foot">
+            <a href="mailto:manishkashyap888th@gmail.com?subject=Case%20study%20request%20—%20Stock%20Market%20Prediction">Ask me about it →</a>
+            <div class="metric"><b>Data → forecast</b><span>full pipeline</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work reveal">
+        <div class="art" data-idx="02"><img src="images/work-rental.jpg" alt="Cream and olive 3D garage grid with a small car model and a lime sphere"></div>
+        <div class="body">
+          <div class="meta"><b>2024</b><span>Full-stack · Mobile</span></div>
+          <h3>Car Rental System</h3>
+          <p class="tag">Rentals, automated end to end.</p>
+          <div class="tags"><span>ASP.NET</span><span>Android Studio</span><span>MySQL</span></div>
+          <p style="color:var(--olive); font-size:14.5px;">An automated platform where customers rent vehicles
+          seamlessly while the business side gets fleet-management utilities — bookings, availability and records in one place.</p>
+          <div class="foot">
+            <a href="mailto:manishkashyap888th@gmail.com?subject=Case%20study%20request%20—%20Car%20Rental%20System">Ask me about it →</a>
+            <div class="metric"><b>Web + Android</b><span>one MySQL backbone</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="drawer reveal">
+      <p>Also in the drawer</p>
+      <ul>
+        <li><a href="mailto:manishkashyap888th@gmail.com?subject=Case%20study%20request%20—%20Solasta%20Fest">Solasta '25 — fest website &amp; promo campaign</a><em>Leadership · Web · Feb 2025 · on request</em></li>
+        <li><a href="mailto:manishkashyap888th@gmail.com?subject=Case%20study%20request%20—%20Hudl%20Match%20Reports">Hudl match reports — performance &amp; opponent analysis decks</a><em>Analytics · Excel/PPT · on request</em></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="snum reveal"><b>02</b> — About</div>
+    <div class="shead reveal"><h2>Good software starts with listening.</h2></div>
+
+    <div class="about-grid">
+      <figure class="about-photo reveal">
+        <img src="images/about-desk.jpg" alt="Sketchbook with wireframes, pencil, chai and a clay sphere on a warm oak desk">
+        <figcaption><span>The desk, Dahisar</span><span>Where it gets figured out</span></figcaption>
+      </figure>
+
+      <div class="about-text reveal">
+        <div class="kv">
+          <div><b>Based in</b> Dahisar, Mumbai, India</div>
+          <div><b>Focus</b> Web development · Data · Events</div>
+        </div>
+        <p>I'm Manish. A <b>web developer and event organizer</b> who started with a curiosity for how
+        websites work and ended up leading a 25-member team in front of 2,000 people.</p>
+        <p>My work sits between <b>code and coordination</b>. I build web applications with Python,
+        JavaScript and PHP backed by SQL databases — and I bring the same care to the organizational side:
+        analytics reports at Hudl, sponsorship decks and master schedules for Solasta, the annual college fest.</p>
+        <p>I care about plain solutions, honest work, and finishing what I ship. Away from the desk:
+        outdoor sports, travelling, and the next campus event to organize.</p>
+
+        <div class="rules">
+          <h4>How I work — three rules</h4>
+          <div class="rule"><b>01</b><div><strong>Work hard, work smart</strong><p>Effort is the ticket; thinking is the multiplier. I bring both.</p></div></div>
+          <div class="rule"><b>02</b><div><strong>Learn from every project</strong><p>Each build — code or event — teaches something the next one uses.</p></div></div>
+          <div class="rule"><b>03</b><div><strong>Own the details</strong><p>The last 5% is where "fine" becomes "people remember it".</p></div></div>
+        </div>
+
+        <div class="toolkit">
+          <h4>Daily toolkit</h4>
+          <div class="chips">
+            <span>Python</span><span>Java</span><span>JavaScript</span><span>PHP</span><span>HTML/CSS</span>
+            <span>Bootstrap</span><span>ASP.NET</span><span>SQL · MySQL</span><span>Android Studio</span>
+            <span>Git &amp; GitHub</span><span>VS Code</span><span>Excel</span><span>PowerPoint</span>
+          </div>
+        </div>
+
+        <div class="resume-link">
+          <a class="btn dark" href="Manish-Kashyap-Resume.pdf" download>⬇ The fuller story, on paper</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 EXPERIENCE ================= -->
+<section id="experience">
+  <div class="wrap">
+    <div class="snum reveal"><b>03</b> — Experience</div>
+    <div class="shead reveal"><h2>Places I've learned from.</h2></div>
+
+    <div class="xp-grid">
+      <div class="reveal">
+        <div class="job">
+          <div class="when">Analytics role</div>
+          <h3>Sports Analyst</h3>
+          <div class="org">Hudl — performance analysis for competitive teams</div>
+          <ul>
+            <li>Analyzed player &amp; team performance using match statistics, video analysis and custom quantitative metrics.</li>
+            <li>Built analytical reports and visual summaries in Excel &amp; PowerPoint supporting coaching and tactical decisions.</li>
+            <li>Evaluated strengths, weaknesses and performance trends across competitive matches and training sessions.</li>
+            <li>Assisted opponent analysis by reviewing game footage and documenting key behavioural patterns.</li>
+            <li>Maintained accurate sports data records and performance databases, streamlining internal workflows.</li>
+          </ul>
+          <div class="tags"><span>Excel</span><span>PowerPoint</span><span>Video analysis</span><span>Data reporting</span></div>
+        </div>
+
+        <div class="job">
+          <div class="when">Feb 2025 · Head Organizer</div>
+          <h3>"Solasta" — Annual College Fest</h3>
+          <div class="org">Thakur Ramnarayan College of Arts and Commerce, Mumbai</div>
+          <ul>
+            <li>Led a 25+ member cross-functional committee for a multi-day cultural &amp; technical fest with 2,000+ attendees.</li>
+            <li>Owned end-to-end planning: venue setup, vendor coordination, master scheduling and on-ground execution.</li>
+            <li>Designed sponsorship pitch decks and maintained budget logs in Excel — helping secure event funding.</li>
+            <li>Ran promotional campaigns across social media, campus posters and direct student outreach.</li>
+            <li>Ensured seamless logistics with rapid real-time troubleshooting during live events.</li>
+          </ul>
+          <div class="tags"><span>Leadership</span><span>Budgeting</span><span>Sponsorships</span><span>Marketing</span><span>Logistics</span></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="side-block">
+          <h4>Education</h4>
+          <div class="edu">
+            <div class="edu" style="padding:0;border:0">
+              <b>BSc — Computer Science</b>
+              <div class="where">Thakur Ramnarayan College of Arts &amp; Commerce, Mumbai</div>
+              <div class="yr">2022 — 2025</div>
+              <div class="score">CGPI 8.56 / 10</div>
+            </div>
+          </div>
+          <div class="edu">
+            <b>Higher Secondary (HSC)</b>
+            <div class="where">Vidyabhushan Junior College, Mumbai</div>
+            <div class="yr">2018 — 2020 · 51.83%</div>
+          </div>
+          <div class="edu">
+            <b>Secondary (SSC)</b>
+            <div class="where">Shakti Seva Sangh Madhyamik Vidyalaya, Mumbai</div>
+            <div class="yr">2017 — 2018 · 60.00%</div>
+          </div>
+        </div>
+
+        <div class="side-block">
+          <h4>Recognition</h4>
+          <div class="award"><i>★</i><div><b>Multiple institutional recognitions</b><span>for campus event leadership &amp; organizing</span></div></div>
+          <div class="award"><i>★</i><div><b>Certified — Introduction to Data Mining</b><span>data pipelines, Decision Trees &amp; SVM classification</span></div></div>
+        </div>
+
+        <div class="side-block">
+          <h4>Languages</h4>
+          <div class="award"><i>◆</i><div><b>Hindi</b><span>native</span></div></div>
+          <div class="award"><i>◆</i><div><b>English</b><span>intermediate</span></div></div>
+          <div class="award"><i>◆</i><div><b>Marathi</b><span>conversational</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEXT UP STRIP ================= -->
+<div class="nextup">
+  <div class="wrap">
+    <p>Next up — web development roles &amp; select projects.</p>
+    <a href="mailto:manishkashyap888th@gmail.com?subject=Opportunity%20for%20Manish">Say hello →</a>
+  </div>
+</div>
+
+<!-- ================= 04 BEYOND ================= -->
+<section id="beyond">
+  <div class="wrap">
+    <div class="snum reveal"><b>04</b> — Beyond the desk</div>
+    <div class="shead reveal"><h2>People before everything.</h2></div>
+    <div class="beyond-grid">
+      <div class="bcard reveal"><div class="em">🏏</div><h4>Outdoor sports</h4><p>Years around the field are why sports analytics at Hudl felt like home — I read the game before I read the spreadsheet.</p></div>
+      <div class="bcard reveal"><div class="em">✈️</div><h4>Travelling</h4><p>New places reset the eye. The best ideas rarely arrive while staring at the same desk.</p></div>
+      <div class="bcard reveal"><div class="em">🎪</div><h4>Campus events</h4><p>Always organizing something — stage plans, sponsor calls, run-sheets. If it needs a team, count me in.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05 CONTACT ================= -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="snum reveal"><b>05</b> — Contact</div>
+    <h2 class="big reveal">Got a project worth <a href="mailto:manishkashyap888th@gmail.com?subject=Hello%20Manish%20—%20let's%20talk">building together?</a></h2>
+    <p class="lede reveal" style="color:var(--olive); max-width:56ch;">I'm open to web development roles and freelance
+    projects. Tell me what you're working on — I reply within a day or two.</p>
+
+    <!-- friendly robot mascot: floats, blinks, waves - and its eyes follow your cursor -->
+    <div class="rwrap" aria-hidden="true">
+      <div class="robot">
+        <div class="r-head">
+          <div class="r-antenna"><i class="r-stem"></i><i class="r-bulb"></i></div>
+          <div class="r-ear l"></div><div class="r-ear r"></div>
+          <div class="r-face">
+            <div class="r-eyes" id="rEyes"><span class="r-eye"></span><span class="r-eye"></span></div>
+            <div class="r-mouth"></div>
+          </div>
+        </div>
+        <div class="r-neck"></div>
+        <div class="r-torso">
+          <div class="r-arm l"></div>
+          <div class="r-arm r"></div>
+          <div class="r-chest"></div>
+          <div class="r-vent"></div>
+        </div>
+        <div class="r-shadow"></div>
+      </div>
+    </div>
+
+    <div class="contact-row reveal">
+      <div class="cbox"><b>Email</b><a href="mailto:manishkashyap888th@gmail.com">manishkashyap888th@gmail.com</a></div>
+      <div class="cbox"><b>Phone</b><a href="tel:+919167197305">+91 91671 97305</a></div>
+      <div class="cbox"><b>LinkedIn</b><a href="https://linkedin.com/in/manish-kashyap-087924273" target="_blank" rel="noopener">manish-kashyap</a></div>
+    </div>
+    <div class="contact-row" style="margin-top:20px">
+      <div class="cbox"><b>Local time</b><div class="ist" id="clock">— IST</div></div>
+      <div class="cbox"><b>Location</b>Dahisar, Mumbai, Maharashtra</div>
+      <div class="cbox"><b>Status</b>Open — replying within 1–2 days</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-mark">Manish Kashyap<i>.</i></div>
+    <div class="foot-row">
+      <span><b>Web Developer &amp; Event Organizer</b> — Dahisar, Mumbai</span>
+      <span>Made with <span style="color:var(--lime-dk)">♥</span> · <span id="yr"></span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- year ---------- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- scroll progress bar + reveal ---------- */
+var prog = document.getElementById('progress');
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold:.12 });
+document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+function onScrollAll(){
+  var max = document.documentElement.scrollHeight - window.innerHeight;
+  prog.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+}
+window.addEventListener('scroll', onScrollAll, { passive:true });
+onScrollAll();
+
+/* count-up stats: numbers roll up like a scoreboard when they appear */
+function countUp(el){
+  var target = parseFloat(el.getAttribute('data-count'));
+  var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+  var plus = el.getAttribute('data-plus') === '1';
+  var t0 = null;
+  function step(ts){
+    if (!t0) t0 = ts;
+    var p = Math.min((ts - t0) / 1400, 1);
+    var val = target * (1 - Math.pow(1 - p, 3));   /* ease-out cubic */
+    el.textContent = (dec ? val.toFixed(dec) : Math.round(val).toLocaleString('en-IN')) + (plus && p === 1 ? '+' : '');
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+var statIO = new IntersectionObserver(function(es){
+  es.forEach(function(e){ if(e.isIntersecting){ countUp(e.target); statIO.unobserve(e.target); } });
+}, { threshold:.4 });
+document.querySelectorAll('[data-count]').forEach(function(el){ statIO.observe(el); });
+
+/* ---------- tilt the portrait with the cursor ---------- */
+var tilt = document.getElementById('tilt');
+if (tilt && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  var fig = tilt.closest('.fig');
+  fig.addEventListener('mousemove', function(ev){
+    var r = fig.getBoundingClientRect();
+    var x = (ev.clientX - r.left) / r.width - .5;
+    var y = (ev.clientY - r.top) / r.height - .5;
+    tilt.style.transform = 'perspective(700px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+  });
+  fig.addEventListener('mouseleave', function(){ tilt.style.transform = 'none'; });
+}
+
+/* ---------- 3D sculpture: tilt the whole scene toward the cursor ---------- */
+(function(){
+  var hero = document.querySelector('.hero'), scene = document.getElementById('m3scene');
+  if (!hero || !scene) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(max-width: 960px)').matches) return;  /* static on phones */
+  var tx = 0, ty = 0, cx = 0, cy = 0, running = false;
+  hero.addEventListener('mousemove', function(ev){
+    var r = hero.getBoundingClientRect();
+    tx = ((ev.clientX - r.left) / r.width  - .5) * 16;   /* ±8 deg */
+    ty = ((ev.clientY - r.top)  / r.height - .5) * -12;  /* ±6 deg */
+    if (!running){ running = true; requestAnimationFrame(follow); }
+  });
+  hero.addEventListener('mouseleave', function(){ tx = 0; ty = 0; if (!running){ running = true; requestAnimationFrame(follow); } });
+  function follow(){
+    cx += (tx - cx) * .07;   /* smooth easing toward the target */
+    cy += (ty - cy) * .07;
+    scene.style.transform = 'rotateY(' + cx.toFixed(2) + 'deg) rotateX(' + cy.toFixed(2) + 'deg)';
+    if (Math.abs(tx - cx) > .05 || Math.abs(ty - cy) > .05){ requestAnimationFrame(follow); }
+    else { running = false; }
+  }
+})();
+
+/* ---------- robot: eyes follow the cursor inside the contact section ---------- */
+(function(){
+  var sec = document.getElementById('contact'), eyes = document.getElementById('rEyes');
+  if (!sec || !eyes) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  sec.addEventListener('mousemove', function(ev){
+    var r = sec.getBoundingClientRect();
+    var dx = (ev.clientX - r.left) / r.width  - .5;
+    var dy = (ev.clientY - r.top)  / r.height - .5;
+    eyes.style.transform = 'translate(' + (dx * 10).toFixed(1) + 'px,' + (dy * 7).toFixed(1) + 'px)';
+  });
+  sec.addEventListener('mouseleave', function(){ eyes.style.transform = ''; });
+})();
+
+/* ---------- Mumbai clock in the contact box ---------- */
+function tickClock(){
+  try{
+    var now = new Date(new Date().toLocaleString('en-US', { timeZone:'Asia/Kolkata' }));
+    var h = String(now.getHours()).padStart(2,'0'), m = String(now.getMinutes()).padStart(2,'0');
+    document.getElementById('clock').textContent = h + ':' + m + ' IST';
+  }catch(_){ document.getElementById('clock').textContent = 'IST — Mumbai'; }
+}
+tickClock(); setInterval(tickClock, 30000);
+</script>
+</body>
+</html>
